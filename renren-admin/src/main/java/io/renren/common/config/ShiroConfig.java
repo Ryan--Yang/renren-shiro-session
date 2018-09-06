@@ -86,9 +86,7 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager);
         shiroFilter.setLoginUrl("/login.html");
         shiroFilter.setUnauthorizedUrl("/");
-        Map<String,Filter> filters = shiroFilter.getFilters();
-        filters.put("authc", new CustomRolesAuthorizationFilter());
-        shiroFilter.setFilters(filters);
+
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/swagger/**", "anon");
         filterMap.put("/v2/api-docs", "anon");
@@ -104,7 +102,9 @@ public class ShiroConfig {
         filterMap.put("/app/**", "anon");
         filterMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
-
+        Map<String,Filter> filters = shiroFilter.getFilters();
+        filters.put("authc", new CustomRolesAuthorizationFilter());
+        shiroFilter.setFilters(filters);
 
         return shiroFilter;
     }

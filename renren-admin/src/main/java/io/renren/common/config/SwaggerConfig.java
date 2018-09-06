@@ -43,16 +43,16 @@ public class SwaggerConfig{
             .apiInfo(apiInfo())
             .select()
             //加了ApiOperation注解的类，生成接口文档
-            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+            //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
             //包下的类，生成接口文档
-            //.apis(RequestHandlerSelectors.basePackage("io.renren.modules.job.controller"))
+            .apis(RequestHandlerSelectors.basePackage("io.renren.modules"))
             .paths(PathSelectors.any())
             .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("人人开源")
+            .title("中电科")
             .description("renren-admin文档")
             .termsOfServiceUrl("http://www.renren.io")
             .version("3.2.0")
