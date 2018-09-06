@@ -4,9 +4,23 @@ server:
     uri-encoding: UTF-8
     max-threads: 1000
     min-spare-threads: 30
-  port: 8081
+  port: 9052
   servlet:
-    context-path: /renren-admin
+    context-path: /
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://172.10.10.171:8765/eureka
+    registry-fetch-interval-seconds: 10
+
+zuul:
+  add-host-header: true
+  sensitive-headers:
+  add-proxy-headers: true
 
 spring:
   profiles:
